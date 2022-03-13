@@ -5,7 +5,7 @@
 
 function Act(id) reaper.Main_OnCommand(id, 0) end
 
-function main()
+function RunScript()
     local item = reaper.GetSelectedMediaItem(0, 0)
     if not item then return end
     UnselectAllItems()
@@ -68,6 +68,6 @@ end
 
 reaper.Undo_BeginBlock()
 reaper.PreventUIRefresh(1)
-main()
+RunScript()
 reaper.PreventUIRefresh(-1)
 reaper.Undo_EndBlock('Bounce In Place', 0)
