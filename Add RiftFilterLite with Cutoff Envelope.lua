@@ -10,8 +10,10 @@ function RunScript()
         local track = reaper.GetSelectedTrack(0, i)
         local fxNumber = reaper.TrackFX_AddByName(track, fxName, false, 1)
         local cutoffParamIndex = 1
-        local trackEnvelope = reaper.GetFXEnvelope(track, fxNumber, cutoffParamIndex, true)
+        local trackEnvelope = reaper.GetFXEnvelope(track, fxNumber, cutoffParamIndex, 1)
     end
+
+    reaper.TrackList_AdjustWindows(false)
 end
 
 RunScript()
