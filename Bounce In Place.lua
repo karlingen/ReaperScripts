@@ -16,6 +16,7 @@ function RunScript()
     -- Grab the media item state after the FX have been applied to it.
     local _, itemStateChunk = reaper.GetItemStateChunk(item, '', true)
     local mediaItemTrack = reaper.GetMediaItemTrack(item)
+    local currentVolume = reaper.GetMediaTrackInfo_Value(mediaItemTrack, "D_VOL")
     local currentTrackId = reaper.CSurf_TrackToID(mediaItemTrack, false)
 
     local newTrack = reaper.GetSelectedTrack(0, 0)
@@ -41,6 +42,9 @@ function RunScript()
     reaper.SetMediaItemSelected(newMediaItem, true)
 
     CropToActiveTakeInItems()
+
+    -- Set the correct volume
+    reaper.SetMediaTrackInfo_Value(newTrack, "D_VOL", currentVolume)
 
     reaper.SetOnlyTrackSelected(newTrack)
     reaper.UpdateArrange()
